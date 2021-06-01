@@ -1,0 +1,16 @@
+{
+  "description": "Tuto app CHAT",
+  "name": "notebookbru/php-poo-nord-coders",
+  "authors": [
+    {
+      "name": "Bruno SCHOLTES",
+      "email": "b.scholtes@free.fr"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Router\\": "routes/"
+    }
+  },
+  "require": {}
+}
