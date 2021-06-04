@@ -9,7 +9,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "Router\\": "routes/"
+      "Router\\": "routes/",
+      "App\\": "app/"
     }
   },
   "require": {}
