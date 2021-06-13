@@ -11,6 +11,14 @@ class BlogController extends Controller{
 
     public function show(int $id)
     {
+        $req = $this->db->getPDO()->query('SELECT * FROM posts');
+        //Récupère un tableau
+        $posts = $req->fetchAll();
+
+        foreach($posts as $post){
+            echo $post->title;
+        }
+
         return $this->view('blog.show', compact('id'));
     }
 
