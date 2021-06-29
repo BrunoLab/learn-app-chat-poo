@@ -4,7 +4,12 @@
 <div class="card mb-3">
     <div class="card-body">
         <h2 class="card-title"><?= $post->title ?></h2>
-        <small class="badge badge-info">Publié le <?= $post->getCreatedAt() ?></small>
+        <div>
+        <?php foreach($post->getTags() as $tag): ?>
+            <span class="badge badge-info"><?= $tag->name ?></span>
+        <?php endforeach; ?>
+        </div>
+        <small class="text-info">Publié le <?= $post->getCreatedAt() ?></small>
         <p><?= $post->getExcerpt() ?></p>
         <?= $post->getButton() ?>
     </div>
