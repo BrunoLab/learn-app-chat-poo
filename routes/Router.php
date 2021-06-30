@@ -18,7 +18,12 @@ class Router{
     {
         //Trier les routes par request method
         $this->routes['GET'][] = new Route($path, $action);
+    }
 
+    public function post(string $path, string $action)
+    {
+        //Trier les routes par request method
+        $this->routes['POST'][] = new Route($path, $action);
     }
 
     public function run(){
