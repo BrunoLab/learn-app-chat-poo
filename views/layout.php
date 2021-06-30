@@ -28,5 +28,8 @@
     <div class="container">
         <?= $content; ?>
     </div>
+    <script src="<?= SCRIPTS . 'js' . DIRECTORY_SEPARATOR . 'jquery-3.2.1.slim.min.js' ?>"></script>
+    <script src="<?= SCRIPTS . 'js' . DIRECTORY_SEPARATOR . 'popper.min.js' ?>"></script>
+    <script src="<?= SCRIPTS . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js' ?>"></script>
 </body>
 </html>
