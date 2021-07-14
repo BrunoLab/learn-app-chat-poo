@@ -22,15 +22,33 @@ abstract class Model{
 
     public function findById(int $id): Model
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", $id, true);
+        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
+    }
+
+    public function update(int $id, array $data)
+    {
+  
+        $sqlRequestPart = "";
+        $i = 1;
+
+        foreach ($data as $key =>$value){
+            $comma = $i === count($data) ? " " : ', ';
+            $sqlRequestPart .= "{$key} = :{$key}{$comma}";
+            $i++;
+        }
+
+        $data['id'] = $id;
+
+        return $this->query("UPDATE {$this->table} SET {$sqlRequestPart} WHERE id = :id", $data);
+
     }
 
     public function delete(int $id): bool
     {
-        return $this->query("DELETE FROM {$this->table} WHERE id = ?", $id);
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
     }
 
-    public function query(string $sql, int $param = null, bool $single = null)
+    public function query(string $sql, array $param = null, bool $single = null)
     {
         $method = is_null($param) ? 'query' : 'prepare';
 
@@ -38,7 +56,7 @@ abstract class Model{
 
             $stmt = $this->db->getPDO()->$method($sql);
             $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db] );
-            return $stmt->execute([$param]);
+            return $stmt->execute($param);
         
 
         }
@@ -51,7 +69,7 @@ abstract class Model{
         if($method === 'query') {
             return $stmt->$fetch();
         } else {
-            $stmt->execute([$param]);
+            $stmt->execute($param);
             return $stmt->$fetch();
         }
     }
